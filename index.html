@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <input id="num" type="number" placeholder="enter a number">
+        <button onclick="tung()">Reverse</button>
+        <p id="out"></p>
+        <script> 
+ async function tung() {
+    const res = await fetch("/api/v1/reverse", {
+        method:"POST",
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify({number: Number(document.getElementById("num").value)})
+
+    });
+    document.getElementById("out").textContent= await res.text();
+ }
+        </script>
+    </body>
+</html>

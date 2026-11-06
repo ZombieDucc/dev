@@ -1,4 +1,4 @@
-from quart import Quart, jsonify, request
+from quart import Quart, jsonify, request, send_file
 import random
 word_list=["ye", "frank ocean", "drake", "MF DOOM", "kendrick lamar" ]
 
@@ -16,7 +16,12 @@ async def get_random():
 async def post_reverse():
     data = await request.get_json()
     num = data.get("number", 0)
-    return jsonify({"original": num, "reversed": int(str(num)[::-1])})
+    return f"{num} reversed is {int(str(num)[::-1])}"
+
+
+@app.get("/")
+async def sygh():
+    return await send_file("index.html")
 
 @app.post("/artists")
 async def get_artist():
